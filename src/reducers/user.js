@@ -12,6 +12,7 @@ export const userReducer = (state = initialState, { type, payload }) =>
         const { name, id } = payload
         draft.name = name
         draft.id = id
+        break;
       default:
         break
     }
