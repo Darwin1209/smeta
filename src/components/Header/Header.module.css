@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 80px;
+  font-size: 24px;
+
+  background-color: rgb(220, 0, 78);
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+  text-decoration: none;
+}
+
+.navListItem:not(:last-child) {
+  margin-right: 16px;
+}
+
+.navigation a {
+  text-decoration: none;
+}
+
+.wrapperLogin{
+  display: flex;
+}
+
+.wrapperLogin a:first-child {
+  margin-right: 16px;
+}
