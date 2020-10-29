@@ -1,9 +1,9 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import { Button } from "@material-ui/core"
+import { Button } from '@material-ui/core';
 
-import styles from "./Header.module.css"
+import styles from './Header.module.css';
 
 const Header = ({ auth = true }) => {
   return (
@@ -49,7 +49,7 @@ const Header = ({ auth = true }) => {
         </div>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

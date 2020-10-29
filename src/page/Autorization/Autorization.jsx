@@ -1,52 +1,52 @@
-import React from "react"
-import Avatar from "@material-ui/core/Avatar"
-import Button from "@material-ui/core/Button"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import TextField from "@material-ui/core/TextField"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
-import Grid from "@material-ui/core/Grid"
-import EmojiPeopleOutlinedIcon from "@material-ui/icons/EmojiPeopleOutlined"
-import Typography from "@material-ui/core/Typography"
-import { makeStyles } from "@material-ui/core/styles"
-import Container from "@material-ui/core/Container"
-import { useState } from "react"
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import EmojiPeopleOutlinedIcon from '@material-ui/icons/EmojiPeopleOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+}));
 
 export default function Autorization() {
-  const classes = useStyles()
+  const classes = useStyles();
   const [data, setData] = useState({
-    login: "",
-    password: "",
+    login: '',
+    password: '',
     checked: false,
-  })
+  });
 
   const handleChange = (key, value) => {
-    setData({ ...data, [key]: value })
-  }
+    setData({ ...data, [key]: value });
+  };
 
   const submitedForm = () => {
     // setVerificate(data)
-  }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -71,7 +71,7 @@ export default function Autorization() {
                 label="Введите логин"
                 autoFocus
                 value={data.login}
-                onChange={(e) => handleChange("login", e.currentTarget.value)}
+                onChange={(e) => handleChange('login', e.currentTarget.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -86,7 +86,7 @@ export default function Autorization() {
                 autoComplete="current-password"
                 value={data.password}
                 onChange={(e) =>
-                  handleChange("password", e.currentTarget.value)
+                  handleChange('password', e.currentTarget.value)
                 }
               />
             </Grid>
@@ -95,7 +95,7 @@ export default function Autorization() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Запомнить меня"
                 value={data.checked}
-                onChange={() => handleChange("checked", !data.checked)}
+                onChange={() => handleChange('checked', !data.checked)}
               />
             </Grid>
           </Grid>
@@ -111,5 +111,5 @@ export default function Autorization() {
         </form>
       </div>
     </Container>
-  )
+  );
 }

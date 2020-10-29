@@ -1,19 +1,19 @@
-import produce from "immer"
+import produce from 'immer';
 
 const initialState = {
-  name: "anonim",
+  name: 'anonim',
   id: undefined,
-}
+};
 
 export const userReducer = (state = initialState, { type, payload }) =>
   produce(state, (draft) => {
     switch (type) {
-      case "VERIFIVATE_USER":
-        const { name, id } = payload
-        draft.name = name
-        draft.id = id
+      case 'VERIFIVATE_USER':
+        const { name, id } = payload;
+        draft.name = name;
+        draft.id = id;
         break;
       default:
-        break
+        break;
     }
-  })
+  });

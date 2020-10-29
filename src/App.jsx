@@ -1,23 +1,23 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Registration from "./page/Registration"
-import Autorization from "./page/Autorization"
+import Registration from './page/Registration';
+import Autorization from './page/Autorization';
 
-import { Container, makeStyles } from "@material-ui/core"
-import Header from "./components/Header"
+import { Container, makeStyles } from '@material-ui/core';
+import Header from './components/Header';
 
 const useStyles = makeStyles((theme) => ({
   text: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "80px",
-    fontSize: "32px",
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '80px',
+    fontSize: '32px',
   },
-}))
+}));
 
 function App() {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Router>
@@ -37,7 +37,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
