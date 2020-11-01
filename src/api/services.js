@@ -28,4 +28,12 @@ export default class Services {
       password,
     })
   }
+
+  newWork = asunc (work) => {
+    const res = this.getResource('/newWork', {
+      ...work
+    })
+
+    return res
+  }
 }

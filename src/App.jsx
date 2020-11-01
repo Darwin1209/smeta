@@ -1,11 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import Registration from './page/Registration';
-import Autorization from './page/Autorization';
+import Registration from './page/Registration'
+import Autorization from './page/Autorization'
 
-import { Container, makeStyles } from '@material-ui/core';
-import Header from './components/Header';
+import { Container, makeStyles } from '@material-ui/core'
+import Header from './components/Header'
+import Work from './page/Work/Work'
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -14,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '80px',
     fontSize: '32px',
   },
-}));
+}))
 
 function App() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Router>
@@ -29,6 +30,9 @@ function App() {
             авторизоваться
           </Container>
         </Route>
+        <Route path="/">
+          <Work />
+        </Route>
         <Route path="/registry">
           <Registration />
         </Route>
@@ -37,7 +41,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

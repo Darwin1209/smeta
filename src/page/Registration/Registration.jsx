@@ -56,8 +56,6 @@ function Registration({ registStatus, registrFetch }) {
     registrFetch(data.login, data.pass)
   }
 
-  console.log(registStatus)
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
