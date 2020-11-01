@@ -1,9 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-import { Button } from '@material-ui/core';
+import { Button } from '@material-ui/core'
 
-import styles from './Header.module.css';
+import styles from './Header.module.css'
+import { connect } from 'react-redux'
 
 const Header = ({ auth = true }) => {
   return (
@@ -34,7 +35,7 @@ const Header = ({ auth = true }) => {
         </ul>
       </nav>
 
-      {auth && (
+      {auth === 'anonim' ? (
         <div className={styles.wrapperLogin}>
           <NavLink to="/registry">
             <Button variant="contained" color="primary">
@@ -47,9 +48,15 @@ const Header = ({ auth = true }) => {
             </Button>
           </NavLink>
         </div>
+      ) : (
+        <div>Здравствуйте, {auth}</div>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+const mapStateToProps = (store) => ({
+  auth: store.user.name,
+})
+
+export default connect(mapStateToProps)(Header)

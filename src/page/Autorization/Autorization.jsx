@@ -1,16 +1,21 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import EmojiPeopleOutlinedIcon from '@material-ui/icons/EmojiPeopleOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { useState } from 'react';
+import React from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@material-ui/core/Grid'
+import EmojiPeopleOutlinedIcon from '@material-ui/icons/EmojiPeopleOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
+
+import { autorizFetch } from '../../actions/UserAction'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,23 +35,26 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
 
-export default function Autorization() {
-  const classes = useStyles();
+function Autorization({ autorizFetch, autorizStatus }) {
+  const classes = useStyles()
   const [data, setData] = useState({
     login: '',
     password: '',
     checked: false,
-  });
+  })
+
+  if (autorizStatus === 'success') return <Redirect to="/work" />
 
   const handleChange = (key, value) => {
-    setData({ ...data, [key]: value });
-  };
+    setData({ ...data, [key]: value })
+  }
 
-  const submitedForm = () => {
-    // setVerificate(data)
-  };
+  const submitedForm = (e) => {
+    e.preventDefault()
+    autorizFetch(data.login, data.password)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -111,5 +119,19 @@ export default function Autorization() {
         </form>
       </div>
     </Container>
-  );
+  )
 }
+
+const mapStateToProps = (store) => ({
+  autorizStatus: store.user.autorizStatus,
+})
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      autorizFetch,
+    },
+    dispatch
+  )
+
+export default connect(mapStateToProps, mapDispatchToProps)(Autorization)

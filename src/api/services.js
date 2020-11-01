@@ -1,28 +1,31 @@
-import Axios from 'axios';
+import Axios from 'axios'
 
 export default class Services {
-  _apiUrl = '/api';
+  _apiUrl = '/api'
 
   getResource = async (url, options) => {
     try {
-      const res = await Axios.post(
-        `${this._apiUrl}${url}`,
-        method === 'post' && { ...options }
-      );
+      const res = await Axios.post(`${this._apiUrl}${url}`, { ...options })
       if (res.status !== 200) {
-        throw new Error('Error in request');
+        throw new Error('Error in request')
       }
-      const result = await res.data;
-      return result;
+      return await res.data
     } catch (err) {
-      console.error(error);
+      console.error(err)
     }
-  };
+  }
 
   login = async (login, password) => {
-    await this.getResource('/autorization', {
+    return await this.getResource('/autorization', {
       login,
       password,
-    });
-  };
+    })
+  }
+
+  registration = async (login, password) => {
+    return await this.getResource('/registration', {
+      login,
+      password,
+    })
+  }
 }
