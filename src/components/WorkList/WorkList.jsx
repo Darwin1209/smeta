@@ -5,7 +5,7 @@ import CheckIcon from '@material-ui/icons/Check'
 
 import styles from './WorkList.module.css'
 
-const WorkItem = ({ name, price, id, renameWork }) => {
+const WorkItem = ({ name, price, _id, renameWork, userId }) => {
   const [rename, setRename] = useState(false)
 
   const [data, setData] = useState({
@@ -18,7 +18,9 @@ const WorkItem = ({ name, price, id, renameWork }) => {
   }
 
   const handleSubmit = () => {
-    renameWork({ ...data, id })
+    if (data.name !== name || data.price !== price) {
+      renameWork({ ...data, _id, userId })
+    }
     setRename(false)
   }
 
@@ -73,7 +75,7 @@ const WorkItem = ({ name, price, id, renameWork }) => {
   )
 }
 
-const WorkList = ({ list, renameWork }) => {
+const WorkList = ({ list, renameWork, userId }) => {
   return (
     <Container component="section" maxWidth="xl">
       <div className={styles.wrapper}>
@@ -83,8 +85,8 @@ const WorkList = ({ list, renameWork }) => {
 
         <ul className={styles.list}>
           {list.map((el) => (
-            <li key={el.id} className={styles.listItem}>
-              <WorkItem {...el} renameWork={renameWork} />
+            <li key={el._id} className={styles.listItem}>
+              <WorkItem {...el} renameWork={renameWork} userId={userId} />
             </li>
           ))}
         </ul>

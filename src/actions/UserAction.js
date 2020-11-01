@@ -8,14 +8,19 @@ export const registrFetch = (login, pass) => (dispatch) => {
   })
   api.registration(login, pass).then((resp) => {
     if (resp.status === 'OK') {
-      const { name, id } = resp
+      const { name, id, jobs } = resp
       dispatch({
         type: 'AUTORIZATION_USER',
         payload: {
           name,
           id,
-          place: 'registStatus'
+          place: 'registStatus',
         },
+      })
+
+      dispatch({
+        type: 'FETCH_JOBS',
+        payload: jobs,
       })
     }
     if (resp.status === 'Duplicate') {
@@ -32,14 +37,19 @@ export const autorizFetch = (login, pass) => (dispatch) => {
   })
   api.login(login, pass).then((resp) => {
     if (resp.status === 'OK') {
-      const { name, id } = resp
+      const { name, id, jobs } = resp
       dispatch({
         type: 'AUTORIZATION_USER',
         payload: {
           name,
           id,
-          place: 'autorizStatus'
+          place: 'autorizStatus',
         },
+      })
+
+      dispatch({
+        type: 'FETCH_JOBS',
+        payload: jobs,
       })
     }
     if (resp.status === 'Password') {

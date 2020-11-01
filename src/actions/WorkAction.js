@@ -1,17 +1,29 @@
-export const addWork = (name, price) => (dispatch) => {
-  dispatch({
-    type: 'ADD_WORK',
-    payload: {
-      name,
-      price,
-      id: new Date(),
-    },
+import Services from '../api/services'
+
+const api = new Services()
+
+export const addWork = (name, price, userId) => (dispatch) => {
+  api.newWork({ name, price }, userId).then((id) => {
+    dispatch({
+      type: 'ADD_WORK',
+      payload: {
+        name,
+        price,
+        _id: id,
+      },
+    })
   })
 }
 
-export const renameWork = (data) => ({
-  type: 'RENAME_WORK',
-  payload: {
-    ...data,
-  },
-})
+export const renameWork = (data, userId) => {
+  api.renameWork(data, userId).then((resp) => {
+    if (resp.status === 'OK') {
+      dispatch({
+        type: 'RENAME_WORK',
+        payload: {
+          ...data,
+        },
+      })
+    }
+  })
+}

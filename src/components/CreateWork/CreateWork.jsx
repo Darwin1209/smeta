@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add'
 
 import styles from './CreateWork.module.css'
 
-const CreateWork = ({ add }) => {
+const CreateWork = ({ add, userId }) => {
   const [data, setData] = useState({
     name: '',
     price: '',
@@ -22,7 +22,7 @@ const CreateWork = ({ add }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    add(data.name, data.price)
+    add(data.name, data.price, userId)
     setData({
       name: '',
       price: '',

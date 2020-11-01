@@ -29,11 +29,17 @@ export default class Services {
     })
   }
 
-  newWork = asunc (work) => {
-    const res = this.getResource('/newWork', {
-      ...work
+  newWork = async (work, userId) => {
+    return await this.getResource('/new-work', {
+      ...work,
+      userId
     })
+  }
 
-    return res
+  renameWork = async (work, userId) => {
+    return await this.getResource('/rename-work', {
+      ...work,
+      userId
+    })
   }
 }

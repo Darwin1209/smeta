@@ -30,7 +30,7 @@ function App() {
             авторизоваться
           </Container>
         </Route>
-        <Route path="/">
+        <Route path="/work">
           <Work />
         </Route>
         <Route path="/registry">

@@ -32,4 +32,13 @@ const userSchema = new Schema({
   ],
 })
 
+userSchema.method('toClient', function () {
+  const obj = this.toObject()
+
+  obj.id = obj._id
+  delete obj._id
+
+  return obj
+})
+
 module.exports = model('User', userSchema)
