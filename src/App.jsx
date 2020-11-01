@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Container, makeStyles } from '@material-ui/core'
 
 import Registration from './page/Registration'
 import Autorization from './page/Autorization'
 
-import { Container, makeStyles } from '@material-ui/core'
 import Header from './components/Header'
 import Work from './page/Work/Work'
+
+import { localUser } from './actions/UserAction'
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -17,8 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function App() {
+function App({ localUser }) {
   const classes = useStyles()
+
+  useEffect(() => {
+    if (localStorage.getItem('idUser') !== undefined) {
+      localUser()
+    }
+  }, [])
 
   return (
     <Router>
@@ -44,4 +54,12 @@ function App() {
   )
 }
 
-export default App
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      localUser,
+    },
+    dispatch
+  )
+
+export default connect(null, mapDispatchToProps)(App)

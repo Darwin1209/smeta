@@ -15,7 +15,7 @@ export const addWork = (name, price, userId) => (dispatch) => {
   })
 }
 
-export const renameWork = (data, userId) => {
+export const renameWork = (data, userId) => (dispatch) => {
   api.renameWork(data, userId).then((resp) => {
     if (resp.status === 'OK') {
       dispatch({

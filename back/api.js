@@ -58,4 +58,11 @@ api.post('/rename-work', async (req, res) => {
   }
 })
 
+//Переписать метод на более защищённый
+
+api.post('/get-user', async (req, res) => {
+  const user = await User.findOne({ _id: req.body.id })
+  res.json({ status: 'OK', name: user.login, id: user._id, jobs: user.jobs })
+})
+
 module.exports = api

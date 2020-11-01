@@ -53,7 +53,7 @@ function Registration({ registStatus, registrFetch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    registrFetch(data.login, data.pass)
+    registrFetch(data.login, data.pass, data.rememb)
   }
 
   return (

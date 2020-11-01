@@ -53,7 +53,7 @@ function Autorization({ autorizFetch, autorizStatus }) {
 
   const submitedForm = (e) => {
     e.preventDefault()
-    autorizFetch(data.login, data.password)
+    autorizFetch(data.login, data.password, data.checked)
   }
 
   return (

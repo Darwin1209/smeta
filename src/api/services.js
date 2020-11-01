@@ -32,14 +32,20 @@ export default class Services {
   newWork = async (work, userId) => {
     return await this.getResource('/new-work', {
       ...work,
-      userId
+      userId,
     })
   }
 
   renameWork = async (work, userId) => {
     return await this.getResource('/rename-work', {
       ...work,
-      userId
+      userId,
+    })
+  }
+
+  getUser = async (id) => {
+    return await this.getResource('/get-user', {
+      id,
     })
   }
 }

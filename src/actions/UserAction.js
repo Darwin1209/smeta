@@ -2,7 +2,11 @@ import Services from '../api/services'
 
 const api = new Services()
 
-export const registrFetch = (login, pass) => (dispatch) => {
+const rememberMe = (id) => {
+  localStorage.setItem('idUser', id)
+}
+
+export const registrFetch = (login, pass, rememb) => (dispatch) => {
   dispatch({
     type: 'REGISTRATION_FETCH',
   })
@@ -18,6 +22,10 @@ export const registrFetch = (login, pass) => (dispatch) => {
         },
       })
 
+      if (rememb) {
+        rememberMe(id)
+      }
+
       dispatch({
         type: 'FETCH_JOBS',
         payload: jobs,
@@ -31,7 +39,7 @@ export const registrFetch = (login, pass) => (dispatch) => {
   })
 }
 
-export const autorizFetch = (login, pass) => (dispatch) => {
+export const autorizFetch = (login, pass, rememb) => (dispatch) => {
   dispatch({
     type: 'AUTORISATION_FETCH',
   })
@@ -46,6 +54,9 @@ export const autorizFetch = (login, pass) => (dispatch) => {
           place: 'autorizStatus',
         },
       })
+      if (rememb) {
+        rememberMe(id)
+      }
 
       dispatch({
         type: 'FETCH_JOBS',
@@ -62,5 +73,23 @@ export const autorizFetch = (login, pass) => (dispatch) => {
         type: 'NOT_FOUND',
       })
     }
+  })
+}
+
+export const localUser = () => (dispatch) => {
+  api.getUser(localStorage.getItem('idUser')).then((resp) => {
+    const { name, id, jobs } = resp
+    dispatch({
+      type: 'AUTORIZATION_USER',
+      payload: {
+        name,
+        id,
+      },
+    })
+
+    dispatch({
+      type: 'FETCH_JOBS',
+      payload: jobs,
+    })
   })
 }
