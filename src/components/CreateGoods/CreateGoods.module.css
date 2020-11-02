@@ -1,0 +1,11 @@
+.work {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.wrapper {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

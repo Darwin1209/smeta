@@ -6,9 +6,10 @@ import { Container, makeStyles } from '@material-ui/core'
 
 import Registration from './page/Registration'
 import Autorization from './page/Autorization'
+import Estimate from './page/Estimate'
+import Work from './page/Work/Work'
 
 import Header from './components/Header'
-import Work from './page/Work/Work'
 
 import { localUser } from './actions/UserAction'
 
@@ -42,6 +43,9 @@ function App({ localUser }) {
         </Route>
         <Route path="/work">
           <Work />
+        </Route>
+        <Route path="/estimate">
+          <Estimate />
         </Route>
         <Route path="/registry">
           <Registration />

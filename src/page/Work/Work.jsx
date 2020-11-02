@@ -8,22 +8,20 @@ import WorkList from '../../components/WorkList'
 
 import { addWork, renameWork } from '../../actions/WorkAction'
 
-const Work = ({ list, addWork, renameWork,userId }) => {
-  useEffect(() => {
-    // Запрос на сервер за работами
-  }, [])
+const Work = ({ list, addWork, renameWork, userId }) => {
+  useEffect(() => {}, [])
 
   return (
-    <Container>
-      <CreateWork add={addWork} userId={userId}/>
-      <WorkList list={list} renameWork={renameWork} userId={userId}/>
+    <Container component="main">
+      <CreateWork add={addWork} userId={userId} />
+      <WorkList list={list} renameWork={renameWork} userId={userId} />
     </Container>
   )
 }
 
 const mapStateToProps = (store) => ({
   list: store.work.list,
-  userId: store.user.id
+  userId: store.user.id,
 })
 
 const mapDispatchToProps = (dispatch) =>

@@ -26,7 +26,7 @@ const Header = ({ auth = true }) => {
             </NavLink>
           </li>
           <li className={styles.navListItem}>
-            <NavLink to="/check">
+            <NavLink to="/estimate">
               <Button variant="contained" color="primary">
                 Новый чек
               </Button>
