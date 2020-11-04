@@ -19,15 +19,17 @@ const userSchema = new Schema({
         type: Number,
         required: true,
       },
-    },
-  ],
-  estimate: [
-    {
-      estimateId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Estimate',
+      priceWorker: {
+        type: Number,
         required: true,
       },
+    },
+  ],
+  clients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Client',
+      required: true,
     },
   ],
 })

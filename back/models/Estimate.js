@@ -2,34 +2,46 @@ const { Schema, model } = require('mongoose')
 
 const estimateSchema = new Schema({
   name: String,
-  goods: [
+  rooms: [
     {
-      name: {
+      roomsName: {
         type: String,
-        required: true,
+        required: 'Rooms name is required',
       },
-      price: {
-        type: Number,
-        required: true,
-      },
-      count: {
-        type: Number,
-        required: true,
-      },
-      cost: {
+      goods: [
+        {
+          goodsName: {
+            type: String,
+            required: true,
+          },
+          price: {
+            type: Number,
+            required: true,
+          },
+          count: {
+            type: Number,
+            required: true,
+          },
+          cost: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
+      roomsTotal: {
         type: Number,
         required: true,
       },
     },
   ],
   total: {
-    type: String,
-    required: true,
+    type: Number,
+    required: 'Total is required',
   },
-  userId: {
+  clientId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+    ref: 'Client',
+    required: 'ClientId is required',
   },
 })
 
