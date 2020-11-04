@@ -12,7 +12,7 @@ const NameEstimate = ({ value, setValue }) => {
   return (
     <Container>
       <div className={styles.wrapper}>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={5}>
             <TextField
               label="Название сметы"

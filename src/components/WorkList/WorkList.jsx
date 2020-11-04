@@ -19,7 +19,7 @@ const WorkItem = ({ name, price, _id, renameWork, userId }) => {
 
   const handleSubmit = () => {
     if (data.name !== name || data.price !== price) {
-      renameWork({ ...data, _id, userId })
+      renameWork({ ...data, _id,}, userId)
     }
     setRename(false)
   }

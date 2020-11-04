@@ -49,7 +49,6 @@ api.post('/rename-work', async (req, res) => {
   try {
     const idx = user.jobs.findIndex((el) => el._id.toString() === _id)
     user.jobs[idx] = { name, price, _id }
-    console.log(user.jobs)
     await user.save()
     res.json({ status: 'OK' })
   } catch (e) {

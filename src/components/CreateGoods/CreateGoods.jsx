@@ -14,8 +14,8 @@ import { toCurrency } from '../../helper/toCurrency'
 
 import styles from './CreateGoods.module.css'
 
-const CreateGoods = ({ list }) => {
-  const [value, setValue] = useState(list?.[0])
+const CreateGoods = ({ list, setNew }) => {
+  const [value, setValue] = useState()
   const [inputValue, setInputValue] = useState('')
   const [amount, setAmount] = useState(0)
 
@@ -28,13 +28,25 @@ const CreateGoods = ({ list }) => {
       </Container>
     )
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (amount === 0 || inputValue === '') {
+      return
+    }
+    const { price, name } = value
+    setNew(name, price, +amount, price * amount)
+    setValue()
+    setInputValue('')
+    setAmount(0)
+  }
+
   return (
     <Container component="section">
       <div className={styles.wrapper}>
         <Typography component="h1" variant="h5">
           Выберите вид работы
         </Typography>
-        <form className={styles.work} onSubmit={() => console.log('a')}>
+        <form className={styles.work} onSubmit={handleSubmit}>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={5}>
               <Autocomplete
@@ -55,6 +67,7 @@ const CreateGoods = ({ list }) => {
                     {...params}
                     label="Выберите работу"
                     variant="outlined"
+                    required
                   />
                 )}
               />
@@ -73,10 +86,12 @@ const CreateGoods = ({ list }) => {
             </Grid>
             <Grid item xs={2}>
               <Box alignItems="center">
-                {value && `Сумма: ${toCurrency(value?.price * amount)}`}
+                {value &&
+                  amount &&
+                  `Сумма: ${toCurrency(value?.price * amount)}`}
               </Box>
             </Grid>
-            <Grid item xs={2} alignContent="center">
+            <Grid item xs={2}>
               <Fab color="primary" aria-label="add" type="submit">
                 <AddIcon />
               </Fab>
