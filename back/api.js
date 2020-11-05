@@ -7,7 +7,6 @@ const api = Router()
 
 api.post('/registration', async (req, res) => {
   const { login, password } = req.body
-  console.log(login, password)
   const user = new User({
     login,
     password,
@@ -81,6 +80,9 @@ api.post('/get-user', async (req, res) => {
 
 api.post('/new-client', async (req, res) => {
   const { userId, name } = req.body
+  if (userId === undefined || name === undefined) {
+    res.json({ status: 'empty fields' })
+  }
   const client = new Client({
     name,
     userId,

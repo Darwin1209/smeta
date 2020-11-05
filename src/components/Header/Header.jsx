@@ -32,6 +32,13 @@ const Header = ({ auth = true }) => {
               </Button>
             </NavLink>
           </li>
+          <li className={styles.navListItem}>
+            <NavLink to="/client">
+              <Button variant="contained" color="primary">
+                Клиенты
+              </Button>
+            </NavLink>
+          </li>
         </ul>
       </nav>
 

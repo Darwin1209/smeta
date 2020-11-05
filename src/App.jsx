@@ -8,6 +8,7 @@ import Registration from './page/Registration'
 import Autorization from './page/Autorization'
 import Estimate from './page/Estimate'
 import Work from './page/Work/Work'
+import Client from './page/Client'
 
 import Header from './components/Header'
 
@@ -52,6 +53,9 @@ function App({ localUser }) {
         </Route>
         <Route path="/autorize">
           <Autorization />
+        </Route>
+        <Route path="/client">
+          <Client />
         </Route>
       </Switch>
     </Router>

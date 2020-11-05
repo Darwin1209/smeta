@@ -48,4 +48,12 @@ export default class Services {
       id,
     })
   }
+
+  newClient = async (userId, name) => {
+    console.log(userId)
+    return await this.getResource('/new-client', {
+      userId,
+      name,
+    })
+  }
 }
