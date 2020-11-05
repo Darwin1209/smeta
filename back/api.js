@@ -1,5 +1,7 @@
 const { Router } = require('express')
 const User = require('./models/User')
+const Client = require('./models/Client')
+const Estimate = require('./models/Estimate')
 
 const api = Router()
 
@@ -10,7 +12,7 @@ api.post('/registration', async (req, res) => {
     login,
     password,
     jobs: [],
-    estimate: [],
+    clients: [],
   })
   try {
     await user.save()
@@ -36,11 +38,23 @@ api.post('/autorization', async (req, res) => {
 })
 
 api.post('/new-work', async (req, res) => {
-  const { userId, name, price } = req.body
-  const user = await User.findOne({ _id: userId })
-  await user.jobs.push({ name, price })
-  await user.save()
-  res.json(user.jobs.pop()._id)
+  const { userId, name, price, priceWorker } = req.body
+  const result = await User.findByIdAndUpdate(
+    { _id: userId },
+    {
+      $push: {
+        jobs: {
+          name,
+          price,
+          priceWorker,
+        },
+      },
+    },
+    {
+      new: true,
+    }
+  )
+  res.json(result.jobs.pop()._id)
 })
 
 api.post('/rename-work', async (req, res) => {
@@ -62,6 +76,51 @@ api.post('/rename-work', async (req, res) => {
 api.post('/get-user', async (req, res) => {
   const user = await User.findOne({ _id: req.body.id })
   res.json({ status: 'OK', name: user.login, id: user._id, jobs: user.jobs })
+})
+
+api.post('/new-client', async (req, res) => {
+  const { userId, name } = req.body
+  const client = new Client({
+    name,
+    userId,
+    estimate: [],
+  })
+
+  const user = await User.findByIdAndUpdate(
+    { _id: userId },
+    { $push: { clients: client._id } },
+    { new: true }
+  )
+
+  await client.save()
+  await user.save()
+
+  res.json({ user, client })
+})
+
+// api.post('/new-estimate', async (req, res) => {
+
+//   const client = await Client.findByIdAndUpdate(
+//     { _id: clientId },
+//     { $push: { estimates: estimate._id } },
+//     { new: true }
+//   )
+
+//   await estimate.save()
+//   await client.save()
+
+//   res.json({ estimate, client })
+// })
+
+api.post('/clients', async (req, res) => {
+  const { userId } = req.body
+
+  const user = await User.findById(userId)
+  const result = await user.execPopulate('clients name')
+
+  res.json({
+    result,
+  })
 })
 
 module.exports = api

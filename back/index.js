@@ -16,9 +16,10 @@ app.use('/api', api)
 
 async function start() {
   try {
-    await mongoose.connect("mongodb://localhost/smeta", {
+    await mongoose.connect('mongodb://localhost/smeta', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     })
 
     app.listen(PORT, function () {
