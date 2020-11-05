@@ -23,6 +23,10 @@ const userSchema = new Schema({
         type: Number,
         required: true,
       },
+      unit: {
+        type: String,
+        required: true,
+      },
     },
   ],
   clients: [
@@ -35,6 +39,3 @@ const userSchema = new Schema({
 })
 
 module.exports = model('User', userSchema)
-
-
-

@@ -38,7 +38,7 @@ api.post('/autorization', async (req, res) => {
 })
 
 api.post('/new-work', async (req, res) => {
-  const { userId, name, price, priceWorker } = req.body
+  const { userId, name, price, priceWorker, unit } = req.body
   const result = await User.findByIdAndUpdate(
     { _id: userId },
     {
@@ -47,6 +47,7 @@ api.post('/new-work', async (req, res) => {
           name,
           price,
           priceWorker,
+          unit,
         },
       },
     },

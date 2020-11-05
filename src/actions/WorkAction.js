@@ -2,13 +2,17 @@ import Services from '../api/services'
 
 const api = new Services()
 
-export const addWork = (name, price, userId) => (dispatch) => {
-  api.newWork({ name, price }, userId).then((id) => {
+export const addWork = (name, price, unit, priceWorker, userId) => (
+  dispatch
+) => {
+  api.newWork({ name, price, unit, priceWorker }, userId).then((id) => {
     dispatch({
       type: 'ADD_WORK',
       payload: {
         name,
         price,
+        unit,
+        priceWorker,
         _id: id,
       },
     })
