@@ -7,8 +7,43 @@ const ClientSchema = new Schema({
   },
   estimates: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Estimate',
+      nameEstimate: String,
+      rooms: [
+        {
+          roomsName: {
+            type: String,
+            required: 'Rooms name is required',
+          },
+          goods: [
+            {
+              goodsName: {
+                type: String,
+                required: true,
+              },
+              price: {
+                type: Number,
+                required: true,
+              },
+              count: {
+                type: Number,
+                required: true,
+              },
+              cost: {
+                type: Number,
+                required: true,
+              },
+            },
+          ],
+          roomsTotal: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
+      total: {
+        type: Number,
+        default: 0,
+      },
     },
   ],
   userId: {

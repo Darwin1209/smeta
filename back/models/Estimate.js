@@ -36,7 +36,7 @@ const estimateSchema = new Schema({
   ],
   total: {
     type: Number,
-    required: 'Total is required',
+    default: 0,
   },
   clientId: {
     type: Schema.Types.ObjectId,
