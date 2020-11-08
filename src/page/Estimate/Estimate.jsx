@@ -6,13 +6,16 @@ import { Container } from '@material-ui/core'
 
 import CreateGoods from '../../components/CreateGoods'
 import HeaderEstimate from '../../components/HeadeEstimate'
+import GoodsList from '../../components/GoodsList'
+import RoomsList from '../../components/RoomsList'
 
 import {
   setHeaderEstimate,
   setNewGoods,
   renameGoods,
+  setNewRooms,
 } from '../../actions/EstimateAction'
-import GoodsList from '../../components/GoodsList'
+
 import { useEffect } from 'react'
 
 const Estimate = ({
@@ -22,6 +25,7 @@ const Estimate = ({
   listClients,
   setNewGoods,
   setHeaderEstimate,
+  setNewRooms,
   renameGoods,
 }) => {
   useEffect(() => {}, [])
@@ -33,10 +37,11 @@ const Estimate = ({
         setHeader={setHeaderEstimate}
         list={listClients}
       />
-      <CreateGoods list={listWorks} setNew={setNewGoods} />
-      <GoodsList
+      <RoomsList
         list={listRooms}
+        setNew={setNewRooms}
         listWorks={listWorks}
+        setNewGoods={setNewGoods}
         renameGoods={renameGoods}
       />
     </Container>
@@ -55,6 +60,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       setHeaderEstimate,
       setNewGoods,
+      setNewRooms,
       renameGoods,
     },
     dispatch

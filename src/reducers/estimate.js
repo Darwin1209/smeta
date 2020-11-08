@@ -7,7 +7,7 @@ const initialState = {
       nameClient: '',
       idClient: '',
     },
-    discount: 0
+    discount: 0,
   },
   total: 0,
   rooms: [],
@@ -47,18 +47,22 @@ export const estimateReducer = (
         draft.header[place] = payload
         break
       case 'SET_NEW_ROOMS':
-        draft.rooms.push(new Room(...payload))
+        draft.rooms.push({
+          name: payload.name,
+          goods: [],
+          total: 0,
+        })
         break
       case 'RENAME_ROOMS':
         draft.rooms[roomId].name = payload
         break
       case 'SET_NEW_GOODS':
         draft.rooms[roomId].goods.push(new Good({ ...payload }))
-        draft.rooms[roomId].total = draft.rooms[roomId].summaryTotal()
+        draft.rooms[roomId].total += payload.cost
         break
       case 'RENAME_GOODS':
         draft.rooms[roomId].goods[goodId] = payload
-        draft.rooms[roomId].total = draft.rooms[roomId].summaryTotal()
+        draft.rooms[roomId].total += payload.cost
         break
       default:
         break

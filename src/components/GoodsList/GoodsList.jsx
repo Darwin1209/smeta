@@ -15,26 +15,57 @@ import { toCurrency } from '../../helper/toCurrency'
 
 import styles from './GoodsList.module.css'
 
-const GoodsItem = ({ name, count, listWorks, id, renameGoods, cost }) => {
+const units = [
+  {
+    label: 'м.кв',
+    value: 'KV',
+  },
+  {
+    label: 'м.п',
+    value: 'P',
+  },
+  {
+    label: 'шт.',
+    value: 'C',
+  },
+]
+
+const GoodsItem = ({
+  name,
+  count,
+  listWorks,
+  id,
+  renameGoods,
+  cost,
+  priceWorker,
+  costWorker,
+  roomId,
+}) => {
   const [rename, setRename] = useState(false)
-  const [value, setValue] = useState(listWorks.find(el => el.name === name))
+  const [value, setValue] = useState(listWorks.find((el) => el.name === name))
   const [inputValue, setInputValue] = useState(name)
   const [amount, setAmount] = useState(count)
 
   const handleSubmit = () => {
     if (value.name !== name || count !== amount) {
-      const { name: nameNew, price } = value
-      renameGoods(nameNew, price, +amount, price * amount, id)
+      const { name: nameNew, price, priceWorker } = value
+      renameGoods(
+        nameNew,
+        price,
+        +amount,
+        price * amount,
+        priceWorker * amount,
+        id,
+        roomId
+      )
     }
     setRename(false)
   }
 
-  console.log(value)
-
   return (
     <form className={styles.work} onSubmit={handleSubmit}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Autocomplete
             value={value}
             id="combo-box-demo"
@@ -62,7 +93,7 @@ const GoodsItem = ({ name, count, listWorks, id, renameGoods, cost }) => {
             )}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <TextField
             id="outlined-basic"
             label="Количество"
@@ -75,6 +106,11 @@ const GoodsItem = ({ name, count, listWorks, id, renameGoods, cost }) => {
             onChange={(e) => setAmount(+e.currentTarget.value)}
           />
         </Grid>
+        <Grid item xs={1}>
+          <Box alignItems="">
+            {`${units.find((el) => el.value === value?.unit)?.label || ''}`}
+          </Box>
+        </Grid>
         <Grid item xs={2}>
           <Box alignItems="center">
             {rename
@@ -83,6 +119,13 @@ const GoodsItem = ({ name, count, listWorks, id, renameGoods, cost }) => {
           </Box>
         </Grid>
         <Grid item xs={2}>
+          <Box alignItems="center">
+            {rename
+              ? value && `Рабочим: ${toCurrency(value?.priceWorker * amount)}`
+              : `Сумма: ${toCurrency(costWorker)}`}
+          </Box>
+        </Grid>
+        <Grid item xs={1}>
           {rename ? (
             <Fab color="secondary" aria-label="check" onClick={handleSubmit}>
               <CheckIcon />
@@ -105,7 +148,7 @@ const GoodsItem = ({ name, count, listWorks, id, renameGoods, cost }) => {
   )
 }
 
-const GoodsList = ({ list, listWorks, renameGoods }) => {
+const GoodsList = ({ list, listWorks, renameGoods, roomId }) => {
   return (
     <Container component="section">
       <div className={styles.wrapper}>
@@ -121,6 +164,7 @@ const GoodsList = ({ list, listWorks, renameGoods }) => {
                 id={id}
                 renameGoods={renameGoods}
                 listWorks={listWorks}
+                roomId={roomId}
               />
             </li>
           ))}

@@ -1,0 +1,17 @@
+.wrapper {
+  margin-top: 40px;
+  margin-bottom: 200px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.form {
+  margin: 20px 0;
+}
+
+.input {
+  width: 400px;
+}

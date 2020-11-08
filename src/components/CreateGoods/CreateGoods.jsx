@@ -14,7 +14,22 @@ import { toCurrency } from '../../helper/toCurrency'
 
 import styles from './CreateGoods.module.css'
 
-const CreateGoods = ({ list, setNew }) => {
+const units = [
+  {
+    label: 'м.кв',
+    value: 'KV',
+  },
+  {
+    label: 'м.п',
+    value: 'P',
+  },
+  {
+    label: 'шт.',
+    value: 'C',
+  },
+]
+
+const CreateGoods = ({ list, setNew, roomId }) => {
   const [value, setValue] = useState()
   const [inputValue, setInputValue] = useState('')
   const [amount, setAmount] = useState(0)
@@ -33,8 +48,16 @@ const CreateGoods = ({ list, setNew }) => {
     if (amount === 0 || inputValue === '') {
       return
     }
-    const { price, name } = value
-    setNew(name, price, +amount, price * amount)
+    const { price, name, priceWorker } = value
+    setNew(
+      name,
+      price,
+      priceWorker,
+      +amount,
+      price * amount,
+      priceWorker * amount,
+      roomId
+    )
     setValue()
     setInputValue('')
     setAmount(0)
@@ -48,7 +71,7 @@ const CreateGoods = ({ list, setNew }) => {
         </Typography>
         <form className={styles.work} onSubmit={handleSubmit}>
           <Grid container spacing={2} alignItems="center">
-            <Grid item xs={5}>
+            <Grid item xs={4}>
               <Autocomplete
                 id="combo-box-demo"
                 options={list}
@@ -72,7 +95,7 @@ const CreateGoods = ({ list, setNew }) => {
                 )}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <TextField
                 id="outlined-basic"
                 label="Количество"
@@ -84,14 +107,26 @@ const CreateGoods = ({ list, setNew }) => {
                 onChange={(e) => setAmount(e.currentTarget.value)}
               />
             </Grid>
+            <Grid item xs={1}>
+              <Box alignItems="">
+                {`${units.find((el) => el.value === value?.unit)?.label || ''}`}
+              </Box>
+            </Grid>
             <Grid item xs={2}>
               <Box alignItems="center">
                 {value &&
                   amount &&
-                  `Сумма: ${toCurrency(value?.price * amount)}`}
+                  `Заказчику: ${toCurrency(value?.price * amount)}`}
               </Box>
             </Grid>
             <Grid item xs={2}>
+              <Box alignItems="center">
+                {value &&
+                  amount &&
+                  `Рабочим: ${toCurrency(value?.priceWorker * amount)}`}
+              </Box>
+            </Grid>
+            <Grid item xs={1}>
               <Fab color="primary" aria-label="add" type="submit">
                 <AddIcon />
               </Fab>
