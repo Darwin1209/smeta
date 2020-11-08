@@ -75,7 +75,15 @@ api.post('/rename-work', async (req, res) => {
 
 api.post('/get-user', async (req, res) => {
   const user = await User.findOne({ _id: req.body.id })
-  res.json({ status: 'OK', name: user.login, id: user._id, jobs: user.jobs })
+    .populate({ path: 'clients', select: 'name' })
+    .exec()
+  res.json({
+    status: 'OK',
+    name: user.login,
+    id: user._id,
+    jobs: user.jobs,
+    clients: user.clients,
+  })
 })
 
 api.post('/new-client', async (req, res) => {
@@ -115,14 +123,16 @@ api.post('/new-client', async (req, res) => {
 //   res.json({ estimate, client })
 // })
 
-api.post('/clients', async (req, res) => {
+api.post('/get-clients', async (req, res) => {
   const { userId } = req.body
 
   const user = await User.findById(userId)
-  const result = await user.execPopulate('clients name')
+  const result = await user
+    .populate({ path: 'clients', select: 'name' })
+    .execPopulate()
 
   res.json({
-    result,
+    clients: result.clients,
   })
 })
 

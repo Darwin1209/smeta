@@ -78,7 +78,7 @@ export const autorizFetch = (login, pass, rememb) => (dispatch) => {
 
 export const localUser = () => (dispatch) => {
   api.getUser(localStorage.getItem('idUser')).then((resp) => {
-    const { name, id, jobs } = resp
+    const { name, id, jobs, clients } = resp
     dispatch({
       type: 'AUTORIZATION_USER',
       payload: {
@@ -90,6 +90,11 @@ export const localUser = () => (dispatch) => {
     dispatch({
       type: 'FETCH_JOBS',
       payload: jobs,
+    })
+
+    dispatch({
+      type: 'FETCH_CLIENTS',
+      payload: clients,
     })
   })
 }

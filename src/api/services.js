@@ -50,10 +50,15 @@ export default class Services {
   }
 
   newClient = async (userId, name) => {
-    console.log(userId)
     return await this.getResource('/new-client', {
       userId,
       name,
+    })
+  }
+
+  getClients = async (userId) => {
+    return await this.getResource('/get-clients', {
+      userId,
     })
   }
 }

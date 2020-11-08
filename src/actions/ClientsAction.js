@@ -21,3 +21,12 @@ export const newClient = (userId, name) => (dispatch) => {
       })
     })
 }
+
+export const fetchClient = (userId) => (dispatch) => {
+  api.newClient(userId).then((data) => {
+    dispatch({
+      type: 'FETCH_CLIENT',
+      payload: data.clients,
+    })
+  })
+}

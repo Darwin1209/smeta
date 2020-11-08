@@ -1,7 +1,7 @@
 import produce from 'immer'
 
 const initialState = {
-  client: [],
+  clients: [],
   statusNew: 'await',
   statusFetch: 'await',
 }
@@ -11,11 +11,11 @@ export const clientReducer = (state = initialState, { type, payload }) =>
     switch (type) {
       case 'NEW_CLIENT':
         draft.statusNew = 'success'
-        draft.client.push(payload)
+        draft.clients.push(payload)
         break
-      case 'FETCH_CLIENT':
+      case 'FETCH_CLIENTS':
         draft.statusFetch = 'succes'
-        draft.client = payload
+        draft.clients = payload
         break
       case 'NEW_CLIENT_ERROR':
         draft.statusNew = 'error'
