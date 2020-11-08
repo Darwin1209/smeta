@@ -98,7 +98,7 @@ api.post('/new-client', async (req, res) => {
   await client.save()
   await user.save()
 
-  res.json({ user, client })
+  res.json({ client })
 })
 
 // api.post('/new-estimate', async (req, res) => {
