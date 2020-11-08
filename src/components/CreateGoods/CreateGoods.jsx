@@ -48,7 +48,7 @@ const CreateGoods = ({ list, setNew, roomId }) => {
     if (amount === 0 || inputValue === '') {
       return
     }
-    const { price, name, priceWorker } = value
+    const { price, name, priceWorker, unit } = value
     setNew(
       name,
       price,
@@ -56,6 +56,7 @@ const CreateGoods = ({ list, setNew, roomId }) => {
       +amount,
       price * amount,
       priceWorker * amount,
+      units.find((a) => a.value === unit).label,
       roomId
     )
     setValue()

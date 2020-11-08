@@ -48,13 +48,14 @@ const GoodsItem = ({
 
   const handleSubmit = () => {
     if (value.name !== name || count !== amount) {
-      const { name: nameNew, price, priceWorker } = value
+      const { name: nameNew, price, priceWorker, unit } = value
       renameGoods(
         nameNew,
         price,
         +amount,
         price * amount,
         priceWorker * amount,
+        units.find((a) => a.value === unit).label,
         id,
         roomId
       )

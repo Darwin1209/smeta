@@ -103,7 +103,6 @@ const RoomsList = ({
       </AppBar>
 
       {list.map((el, idx) => {
-        console.log(el)
         return (
           <TabPanel value={value} index={idx} key={idx}>
             <CreateGoods list={listWorks} setNew={setNewGoods} roomId={idx} />

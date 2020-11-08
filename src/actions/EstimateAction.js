@@ -11,6 +11,7 @@ export const setNewGoods = (
   count,
   cost,
   costWorker,
+  unit,
   roomId
 ) => (dispatch) => {
   dispatch({
@@ -22,6 +23,7 @@ export const setNewGoods = (
       count,
       cost,
       costWorker,
+      unit,
     },
     roomId,
   })
@@ -33,6 +35,7 @@ export const renameGoods = (
   count,
   cost,
   costWorker,
+  unit,
   goodId,
   roomId
 ) => ({
@@ -43,6 +46,7 @@ export const renameGoods = (
     count,
     cost,
     costWorker,
+    unit,
   },
   goodId,
   roomId,

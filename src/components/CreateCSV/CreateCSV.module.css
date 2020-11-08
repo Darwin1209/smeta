@@ -1,0 +1,30 @@
+.table {
+  width: 800px;
+
+  border: 1px;
+  border-collapse: collapse;
+  border: 2px solid #000000;
+}
+
+th {
+  text-align: center; /* Выравнивание по левому краю */
+}
+
+td,
+th {
+  border: 1px solid #000000; /* Параметры границы */
+  padding: 4px; /* Поля в ячейках */
+}
+
+.title td:not(:first-child) {
+  background-color: #bfbfbf;
+  text-align: center;
+}
+
+.firstTd {
+  background-color: #bfbfbf;
+}
+
+.total {
+  text-align: right;
+}
