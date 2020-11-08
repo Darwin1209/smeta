@@ -5,29 +5,37 @@ import { bindActionCreators } from 'redux'
 import { Container } from '@material-ui/core'
 
 import CreateGoods from '../../components/CreateGoods'
-import NameEstimate from '../../components/NameEstimate'
+import HeaderEstimate from '../../components/HeadeEstimate'
 
 import {
-  setNameEstimate,
+  setHeaderEstimate,
   setNewGoods,
   renameGoods,
 } from '../../actions/EstimateAction'
 import GoodsList from '../../components/GoodsList'
+import { useEffect } from 'react'
 
 const Estimate = ({
-  name,
+  header,
   listWorks,
-  listGoods,
+  listRooms,
+  listClients,
   setNewGoods,
-  setNameEstimate,
+  setHeaderEstimate,
   renameGoods,
 }) => {
+  useEffect(() => {}, [])
+
   return (
     <Container component="main" maxWidth="xl">
-      <NameEstimate value={name} setValue={setNameEstimate} />
+      <HeaderEstimate
+        header={header}
+        setHeader={setHeaderEstimate}
+        list={listClients}
+      />
       <CreateGoods list={listWorks} setNew={setNewGoods} />
       <GoodsList
-        list={listGoods}
+        list={listRooms}
         listWorks={listWorks}
         renameGoods={renameGoods}
       />
@@ -37,14 +45,15 @@ const Estimate = ({
 
 const mapStateToProps = (store) => ({
   listWorks: store.work.list,
-  listGoods: store.estimate.goods,
-  name: store.estimate.name,
+  listRooms: store.estimate.rooms,
+  listClients: store.client.clients,
+  header: store.estimate.header,
 })
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      setNameEstimate,
+      setHeaderEstimate,
       setNewGoods,
       renameGoods,
     },

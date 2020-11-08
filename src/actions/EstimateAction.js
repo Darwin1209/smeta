@@ -1,6 +1,7 @@
-export const setNameEstimate = (name) => ({
-  type: 'SET_NAME_ESTIMATE',
-  payload: name,
+export const setHeaderEstimate = (payload, place) => ({
+  type: 'SET_HEADER_ESTIMATE',
+  payload,
+  place,
 })
 
 export const setNewGoods = (name, price, count, cost) => (dispatch) => {
