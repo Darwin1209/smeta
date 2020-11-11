@@ -1,38 +1,42 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import tableexport from 'tableexport'
 
-import styles from './CreateCSV.module.css'
+import './CreateCSV.css'
 
 const CreateCSV = ({ estimate }) => {
   const { rooms, header, total, totalWorker } = estimate
+
   return (
     <div>
+      <button onClick={exportTable}>export</button>
+      <h3>Смета для заказчика</h3>
       <ReactHTMLTableToExcel
-        id="test-table-xls-button"
-        className="download-table-xls-button"
+        id="fwafwa"
+        className={'button-download'}
         table="client"
-        filename={`${header.client.name}--z`}
+        filename={`${header.name}--z`}
         sheet="tablexls"
-        buttonText="Download as XLS"
+        buttonText="Скачать"
       />
-      <table id="client" className={styles.table}>
+      <table id="client" className={'table'}>
         {rooms.map((room) => (
           <React.Fragment>
             <tr>
               <th colSpan="6">{room.name}</th>
             </tr>
-            <tr className={styles.title}>
+            <tr>
               <td>&nbsp;</td>
-              <td>Наименование</td>
-              <td>Ед. изм.</td>
-              <td>Цена</td>
-              <td>К-во</td>
-              <td>Cумма</td>
+              <td className="title">Наименование</td>
+              <td className="title">Ед. изм.</td>
+              <td className="title">Цена</td>
+              <td className="title">К-во</td>
+              <td className="title">Cумма</td>
             </tr>
-            {room.goods.map((good) => (
+            {room.goods.map((good, id) => (
               <tr>
-                <td className={styles.firstTd}>&nbsp;</td>
+                <td className={'title'}>{id + 1}</td>
                 <td>{good.name}</td>
                 <td>{good.unit}</td>
                 <td>{good.price}</td>
@@ -41,28 +45,68 @@ const CreateCSV = ({ estimate }) => {
               </tr>
             ))}
             <tr>
-              <td colSpan="6" className={styles.total}>
+              <td colSpan="6" className={'total'}>
                 <b>{room.total}</b>
               </td>
             </tr>
             <tr>
               <td colSpan="6">&nbsp;</td>
             </tr>
+          </React.Fragment>
+        ))}
+        <tr>
+          <td colSpan="6" className={'total'}>
+            <b>{total}</b>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Смета для заказчика</h3>
+      <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className={'button-download'}
+        table="worker"
+        filename={`${header.name}--r`}
+        sheet="tablexls"
+        buttonText="Скачать"
+      />
+      <table id="worker" className={'table'}>
+        {rooms.map((room) => (
+          <React.Fragment>
+            <tr>
+              <th colSpan="6">{room.name}</th>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td className="title">Наименование</td>
+              <td className="title">Ед. изм.</td>
+              <td className="title">Цена</td>
+              <td className="title">К-во</td>
+              <td className="title">Cумма</td>
+            </tr>
+            {room.goods.map((good, id) => (
+              <tr>
+                <td className={'title'}>{id + 1}</td>
+                <td>{good.name}</td>
+                <td>{good.unit}</td>
+                <td>{good.priceWorker}</td>
+                <td>{good.count}</td>
+                <td>{good.costWorker}</td>
+              </tr>
+            ))}
+            <tr>
+              <td colSpan="6" className={'total'}>
+                <b>{room.totalWorker}</b>
+              </td>
+            </tr>
             <tr>
               <td colSpan="6">&nbsp;</td>
             </tr>
           </React.Fragment>
         ))}
-        <tr></tr>
-        <tr></tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <b>{total}</b>
+          <td colSpan="6" className={'total'}>
+            <b>{totalWorker}</b>
           </td>
         </tr>
       </table>
