@@ -14,17 +14,17 @@ const initialState = {
   rooms: [],
 }
 
-class Room {
-  constructor({ name }) {
-    this.name = name
-    this.goods = []
-    this.total = this.summaryTotal(this.goods)
-  }
+// class Room {
+//   constructor({ name }) {
+//     this.name = name
+//     this.goods = []
+//     this.total = this.summaryTotal(this.goods)
+//   }
 
-  summaryTotal = () => {
-    return this.goods.reduce((acc, { cost }) => (acc += cost), 0)
-  }
-}
+//   summaryTotal = () => {
+//     return this.goods.reduce((acc, { cost }) => (acc += cost), 0)
+//   }
+// }
 
 class Good {
   constructor({ name, price, priceWorker, count, unit }) {

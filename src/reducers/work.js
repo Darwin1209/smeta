@@ -2,6 +2,7 @@ import produce from 'immer'
 
 const initialState = {
   list: [],
+  filter: '',
 }
 
 export const workReducer = (state = initialState, { type, payload }) =>
@@ -16,6 +17,9 @@ export const workReducer = (state = initialState, { type, payload }) =>
       case 'RENAME_WORK':
         const idx = draft.list.findIndex((el) => el.id === payload.id)
         draft.list[idx] = { ...payload }
+        break
+      case 'SET_FILTER_WORK':
+        draft.filter = payload
         break
       default:
         break

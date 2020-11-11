@@ -31,3 +31,8 @@ export const renameWork = (data, userId) => (dispatch) => {
     }
   })
 }
+
+export const setFilterWork = (payload) => ({
+  type: 'SET_FILTER_WORK',
+  payload,
+})

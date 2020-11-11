@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
-import tableexport from 'tableexport'
 
 import './CreateCSV.css'
 
@@ -10,7 +9,6 @@ const CreateCSV = ({ estimate }) => {
 
   return (
     <div>
-      <button onClick={exportTable}>export</button>
       <h3>Смета для заказчика</h3>
       <ReactHTMLTableToExcel
         id="fwafwa"
