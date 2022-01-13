@@ -44,6 +44,7 @@ function App({ localUser }) {
         </Route>
         <Route path="/work">
           <Work />
+       
         </Route>
         <Route path="/estimate">
           <Estimate />

@@ -24,6 +24,10 @@ const ClientSchema = new Schema({
                 type: Number,
                 required: true,
               },
+              priceWorker: {
+                type: Number,
+                required: true,
+              },
               count: {
                 type: Number,
                 required: true,
@@ -32,15 +36,30 @@ const ClientSchema = new Schema({
                 type: Number,
                 required: true,
               },
+              unit: String,
+              costWorker: {
+                type: Number,
+                required: true,
+              },
             },
           ],
           roomsTotal: {
             type: Number,
             required: true,
+            default: 0,
+          },
+          roomsTotalWorker: {
+            type: Number,
+            required: true,
+            default: 0,
           },
         },
       ],
       total: {
+        type: Number,
+        default: 0,
+      },
+      totalWorker: {
         type: Number,
         default: 0,
       },

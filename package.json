@@ -10,21 +10,29 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "express": "^4.17.1",
     "immer": "^7.0.14",
+    "jiramark": "^0.5.0",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-html-table-to-excel": "^2.0.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "tableexport": "^5.2.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "nodemon back/index.js"
   },
   "eslintConfig": {
     "extends": [
@@ -32,6 +40,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://localhost:3030",
   "browserslist": {
     "production": [
       ">0.2%",

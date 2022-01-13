@@ -6,6 +6,7 @@ import './CreateCSV.css'
 
 const CreateCSV = ({ estimate }) => {
   const { rooms, header, total, totalWorker } = estimate
+  console.log(estimate)
 
   return (
     <div>
